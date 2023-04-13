@@ -10,7 +10,7 @@ with open(exclude_list, "r") as f:
 
 # Find all PNG files in the current directory and its subdirectories, excluding directories in the exclude list 
 exceptFileList = []
-for root, dirs, files in os.walk("/path/to/your/project", topdown=True):
+for root, dirs, files in os.walk("/Users/liujiang/Desktop/kopms", topdown=True):
     # Remove excluded directories from the search
     dirs[:] = [d for d in dirs if os.path.join(root, d) not in exclude_set]
 
@@ -61,8 +61,8 @@ for root, dirs, files in os.walk("/path/to/your/project", topdown=True):
                 newPrefix = prefix3x
                 new_filename = os.path.join(root, prefix3x + ".png")
             if newPrefix == "" :
-                exceptFileList.append(os.path.join(root, filename))
-                break
+                newPrefix = parent
+                new_filename = os.path.join(root, parent + ".png")
             # Rename the file
             os.rename(os.path.join(root, filename), new_filename)
             print(f"Renamed\n{os.path.join(root, filename)}\n{new_filename}")
